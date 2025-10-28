@@ -1,0 +1,255 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Netflix</title>
+  <style>
+    :root{
+      --bg:#0b0b0b; --card:#141414; --muted:#b3b3b3; --accent:#e50914; --glass: rgba(255,255,255,0.04);
+      --maxw:1200px; --radius:10px; --gap:14px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,#050505 0%, #0d0d0d 100%);color:#fff;}
+    .container{max-width:var(--maxw);margin:0 auto;padding:24px}
+
+    /* NAVBAR */
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;gap:18px;align-items:center}
+    .logo{font-weight:800;font-size:22px;color:var(--accent)}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .nav a.active, .nav a:hover{color:#fff}
+    .search{background:var(--glass);padding:8px 12px;border-radius:6px;color:var(--muted);font-size:14px}
+
+    /* PAGE LAYOUT */
+    .page{display:none;padding-top:12px}
+    .page.active{display:block}
+
+    /* HERO */
+    .hero{position:relative;border-radius:14px;overflow:hidden;background:#222;height:52vh;min-height:320px}
+    .hero .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.45)}
+    .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%, rgba(0,0,0,0.75))}
+    .hero-content{position:relative;z-index:2;padding:40px 48px;max-width:720px}
+    .hero h1{font-size:48px;margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .btn{display:inline-block;padding:10px 18px;border-radius:8px;font-weight:700;text-decoration:none}
+    .btn.play{background:var(--accent);color:#fff;margin-right:10px}
+    .btn.info{background:rgba(255,255,255,0.12);color:#fff}
+
+    /* ROWS */
+    .row{margin-top:22px}
+    .row h3{margin:0 0 12px}
+    .carousel{display:flex;gap:12px;overflow:auto;padding-bottom:6px}
+    .card{min-width:160px;height:240px;border-radius:10px;background-size:cover;background-position:center;flex:0 0 auto;cursor:pointer;position:relative;transition:transform .18s ease}
+    .card:focus, .card:hover{transform:translateY(-6px)}
+    .card .meta{position:absolute;left:8px;bottom:8px;font-size:13px;background:linear-gradient(90deg, rgba(0,0,0,0.5), transparent);padding:6px 8px;border-radius:6px}
+
+    /* GRID */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(160px,1fr));gap:14px}
+
+    /* DETAIL */
+    .detail{display:flex;gap:20px}
+    .poster{width:320px;border-radius:10px;min-height:420px;background-size:cover;background-position:center}
+    .detail .info{flex:1}
+    .tags{display:flex;gap:8px;color:var(--muted);font-size:14px;margin:8px 0}
+    .synopsis{color:var(--muted);line-height:1.5}
+
+    /* PLAYER MOCK */
+    .player{background:#000;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px}
+    .video{background:linear-gradient(90deg,#111,#222);height:360px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+
+    /* FOOTER */
+    footer{margin:36px 0;color:var(--muted);font-size:13px}
+
+    /* small screens */
+    @media (max-width:800px){
+      .hero h1{font-size:28px}
+      .detail{flex-direction:column}
+      .poster{width:100%;min-height:260px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <div class="brand">
+        <div class="logo">NETFLIX</div>
+        <div class="nav-links">
+          <a href="#" data-page="home" class="nav-link active">Home</a>
+          <a href="#" data-page="browse" class="nav-link">Browse</a>
+          <a href="#" data-page="details" class="nav-link">Title</a>
+          <a href="#" data-page="player" class="nav-link">Player</a>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="search">Search (mock)</div>
+        <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=40&h=40&fit=crop&auto=format" alt="avatar" style="width:36px;height:36px;border-radius:6px">
+      </div>
+    </nav>
+
+    <!-- PAGE: HOME -->
+    <section id="home" class="page active">
+      <div class="hero" aria-hidden="false">
+        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&q=60&w=1400&h=800&fit=crop')"></div>
+        <div class="overlay"></div>
+        <div class="hero-content">
+          <h1>Made for Binge-Watching</h1>
+          <p>Discover new shows, top picks and the latest movies — all in one place. This is a lightweight static mockup to help you build a Netflix UI.</p>
+          <a class="btn play" data-page="player">▶ Play</a>
+          <a class="btn info" data-page="details">i More info</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <h3>Trending Now</h3>
+        <div class="carousel" id="trending"></div>
+      </div>
+
+      <div class="row">
+        <h3>Top Picks For You</h3>
+        <div class="carousel" id="top-picks"></div>
+      </div>
+    </section>
+
+    <!-- PAGE: BROWSE -->
+    <section id="browse" class="page">
+      <h2>Browse</h2>
+      <div class="row">
+        <div class="grid" id="browse-grid"></div>
+      </div>
+    </section>
+
+    <!-- PAGE: DETAILS -->
+    <section id="details" class="page">
+      <div class="detail">
+        <div class="poster" id="detail-poster" style="background-image:url('https://images.unsplash.com/photo-1517604931442-8b2b6c6b68e8?auto=format&q=60&w=800&h=1200&fit=crop')"></div>
+        <div class="info">
+          <h2 id="detail-title">The Sample Show</h2>
+          <div class="tags"><div>2024</div><div>•</div><div>Action</div><div>•</div><div>3 Seasons</div></div>
+          <p class="synopsis" id="detail-synopsis">This is a demo synopsis for the sample show. Use this area to show a longer description, cast highlights, and why users should watch this title.</p>
+          <div style="margin-top:16px">
+            <a class="btn play" data-page="player">▶ Play</a>
+            <a class="btn info" data-page="browse">Browse similar</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAGE: PLAYER -->
+    <section id="player" class="page">
+      
+
+
+
+      <h2>Player (Mock)</h2>
+
+      <div class="player">
+        <div class="video">Video player mock — use a real video tag or iframe in production</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div style="font-weight:700">Now Playing: <span id="player-title">Sample Show — Episode 1</span></div>
+          <div style="color:var(--muted)">00:12 / 42:00</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>Demo UI — replace images, data and add real video embed / API wiring. Built with HTML, CSS & a bit of JS.</footer>
+  </div>
+
+  <script>
+    /* Simple demo data */
+    const sample = Array.from({length:16}).map((_,i)=>({
+      id:i+1,
+      title:['Midnight Run','Edge of Tomorrow','Deep Sea','City Lights','Neon Nights','Lost Highway','Skyfall','Secret Garden'][i%8],
+      year:2018 + (i%7),
+      img:`https://images.unsplash.com/photo-15${(100+i)%999}??auto=format&q=60&w=600&h=900&fit=crop`
+    }))
+
+    // Instead of generating nonsense Unsplash urls above, we'll use a set of reliable placeholder images for cards
+    const imgs = [
+      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&q=60&w=600&h=900&fit=crop',
+      'https://images.unsplash.com/photo-1517604931442-8b2b6c6b68e8?auto=format&q=60&w=600&h=900&fit=crop',
+      'https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&q=60&w=600&h=900&fit=crop',
+      'https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&q=60&w=600&h=900&fit=crop',
+      'https://images.unsplash.com/photo-1517604983899-25f1b9a0c9f6?auto=format&q=60&w=600&h=900&fit=crop',
+      'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&q=60&w=600&h=900&fit=crop'
+    ];
+
+    // fill carousels and grid
+    const trending = document.getElementById('trending');
+    const topPicks = document.getElementById('top-picks');
+    const browseGrid = document.getElementById('browse-grid');
+
+    for(let i=0;i<12;i++){
+      const item = document.createElement('button');
+      item.className='card';
+      const bg = imgs[i % imgs.length];
+      item.style.backgroundImage = `url('${bg}')`;
+      item.setAttribute('data-title', `Sample Title ${i+1}`);
+      item.setAttribute('data-img', bg);
+      item.setAttribute('aria-label', `Open detail for Sample Title ${i+1}`);
+      item.addEventListener('click', openDetail);
+      const meta = document.createElement('div'); meta.className='meta'; meta.textContent = `S${1} • ${2018 + (i%7)}`;
+      item.appendChild(meta);
+      trending.appendChild(item);
+    }
+
+    for(let i=0;i<8;i++){
+      const item = document.createElement('button');
+      item.className='card';
+      const bg = imgs[(i+2) % imgs.length];
+      item.style.backgroundImage = `url('${bg}')`;
+      item.setAttribute('data-title', `Top Pick ${i+1}`);
+      item.setAttribute('data-img', bg);
+      item.addEventListener('click', openDetail);
+      const meta = document.createElement('div'); meta.className='meta'; meta.textContent = `Top Pick`;
+      item.appendChild(meta);
+      topPicks.appendChild(item);
+    }
+
+    // grid
+    for(let i=0;i<16;i++){
+      const el = document.createElement('div'); el.className='card';
+      const bg = imgs[i % imgs.length]; el.style.backgroundImage = `url('${bg}')`;
+      el.addEventListener('click', openDetail);
+      browseGrid.appendChild(el);
+    }
+
+    // navigation
+    document.querySelectorAll('.nav-link, .btn[data-page]').forEach(el=>{
+      el.addEventListener('click', e=>{
+        e.preventDefault();
+        const page = el.dataset.page;
+        if(page) showPage(page);
+      })
+    })
+
+    function showPage(id){
+      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active', a.dataset.page===id));
+    }
+
+    function openDetail(e){
+      const tgt = e.currentTarget;
+      const img = tgt.getAttribute('data-img') || tgt.style.backgroundImage.replace(/^url\("?|'?|\)?$/g,'');
+      const title = tgt.getAttribute('data-title') || 'Untitled';
+      document.getElementById('detail-poster').style.backgroundImage = `url('${img}')`;
+      document.getElementById('detail-title').textContent = title;
+      document.getElementById('detail-synopsis').textContent = `This is a demo description for ${title}. Replace this with real metadata and cast information.`;
+      showPage('details');
+
+
+
+      
+    }
+
+    // small accessibility tweak: allow keyboard focus on cards
+    document.querySelectorAll('.card').forEach(c=>{c.tabIndex=0; c.addEventListener('keydown', (e)=>{if(e.key==='Enter') c.click()})});
+  </script>
+</body>
+</html>
