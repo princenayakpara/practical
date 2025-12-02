@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerodha Clone</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ------------------------------
+   Zerodha Clone - style.css
+   Author: Prince Patel
+--------------------------------*/
+
+:root {
+  --primary-color: #387ed1;
+  --text-dark: #222;
+  --text-light: #666;
+  --bg-light: #fff;
+  --bg-grey: #f8f9fa;
+  --border-color: #ddd;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  background: var(--bg-light);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar .container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+/* Hero Section */
+main > div:first-child img {
+  width: 100%;
+  max-width: 700px;
+  display: block;
+  margin: 50px auto;
+}
+
+main > div:nth-child(2) {
+  text-align: center;
+  margin: 30px 0 60px;
+}
+
+main h2 {
+  font-size: 2rem;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+main h3 {
+  color: var(--text-light);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+main h3:last-child {
+  color: var(--primary-color);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Trust Section */
+main > div:nth-child(3) {
+  width: 85%;
+  margin: 80px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+main > div:nth-child(3) > div {
+  flex: 1 1 400px;
+}
+
+main > div:nth-child(3) img {
+  width: 100%;
+  max-width: 500px;
+}
+
+main a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+main a i {
+  margin-left: 5px;
+}
+
+/* Press Logos */
+main > div:nth-child(4) img {
+  display: block;
+  margin: 60px auto;
+  width: 90%;
+  max-width: 800px;
+}
+
+/* Pricing Section */
+main > div:nth-child(5) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0;
+}
+
+main > div:nth-child(5) h2 {
+  font-size: 2rem;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+main > div:nth-child(5) h3 {
+  color: var(--text-light);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+main > div:nth-child(5) h4 {
+  color: var(--text-light);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <img src="https://zerodha.com/static/images/logo.svg" style="width: 100px; height: 30px;" alt="Zerodha Logo" class="logo">
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Signup</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <main>
+    <!-- Page-specific content will go here -->
+     <div>
+      <img src="https://zerodha.com/static/images/landing.svg" alt="Zerodha Landing">
+     </div>
+     <div>
+      <h2>Invest in everything</h2>
+      <h3>Online platform to invest in stocks, derivatives, mutual funds, ETFs, bonds, and more.</h3>
+      <h3>Sign up for free</h3>
+     </div>
+     <div>
+      <div>
+        <h2>Trust with confidence</h2>
+        <h3>Customer-first always</h3>
+        <h4>That's why 1.6+ crore customers trust Zerodha with ~ ₹6 lakh crores of equity investments, making us India’s largest broker; contributing to 15% of daily retail exchange volumes in India.</h4>
+        <br>
+        <h3>No spam or gimmicks</h3>
+        <h4>No gimmicks, spam, "gamification", or annoying push notifications. High quality apps that you use at your pace, the way you like. Our philosophies.</h4>
+        <br>
+        <h3>The Zerodha universe</h3>
+        <h4>Not just an app, but a whole ecosystem. Our investments in 30+ fintech startups offer you tailored services specific to your needs.</h4>
+        <br>
+        <h3>Do better with money</h3>
+        <h4></h4>
+      </div>
+      <div>With initiatives like Nudge and Kill Switch, we don't just facilitate transactions, but actively help you do better with your money.</div>
+      <div>
+        <img src="https://zerodha.com/static/images/ecosystem.png" alt="Zerodha Ecosystem"> 
+        <a href="#explore">Explore our products<i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#demo">Try Kite demo<i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+     </div>
+     <div>
+      <img src="https://zerodha.com/static/images/press-logos.png" alt="press logos">
+     </div>
+     <div>
+      <div>
+
+      </div>
+      <div>
+        <img src="https://zerodha.com/static/images/pricing-eq.svg" alt="free account image">Free account <br> opening
+      </div>
+      <div>
+        <img src="https://zerodha.com/static/images/pricing-eq.svg" alt="free equity delivery image">
+         Free equity delivery <br>
+         and direct mutual funds
+      </div>
+      <div>
+        <img src="https://zerodha.com/static/images/other-trades.svg" alt="other trades image">
+        Intraday and <br>
+        F&O
+      </div>
+     </div>
+     <div>
+      <div>
+        <img src="https://zerodha.com/static/images/index-education.svg" alt="education image">
+      </div>
+      <div>
+        <h3>Free and open market education</h3>
+        <br>
+        <h4>Varsity, the largest online stock market education book in the world covering everything from the basics to advanced trading.</h4>
+        <a href="#varsity">Varsity<i class="fa-solid fa-arrow-right"></i></a>
+        <br>
+        <h4>TradingQ&A, the most active trading and investment community in India for all your market related queries.</h4>
+        <a href="#trading-qa">TradingQ&A<i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+     </div>
+     <div>
+      <h2>Open a Zerodha account</h2>
+      <h4>Modern platforms and apps, ₹0 investments, and flat ₹20 intraday and F&O trades.</h4>
+      <h3>Sign up for free</h3>
+     </div>
+  </main>
+
+  <!-- Footer -->
+
+  <footer>
+    <div class="container footer-content">
+       <img src="https://zerodha.com/static/images/logo.svg" alt="Zerodha Logo">
+      <p>© 2010 - 2025 Zerodha Broking Ltd. All rights <br>
+      reserved.</p>
+      <p>Made by Prince Patel</p>
+    </div>
+  </footer>
+</body>
+</html>
