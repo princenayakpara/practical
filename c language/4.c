@@ -2,23 +2,26 @@
 
 #include <stdio.h>
 
-enum Weekday { MON, TUE, WED, THU, FRI, SAT, SUN };
+enum weekDay {
+    SUNDAY,
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY
+};
 
 int main() {
-    int n;
-    const char weekdays[] = {
-        "Monday", "Tuesday", "Wednesday",
-        "Thursday", "Friday", "Saturday", "Sunday"
-    };
-
-    printf("Enter a number (0-6): ");
-    scanf("%d", &n);
-
-    if (n < 0 || n > 6) {
+    enum weekDay today;
+    today = 1;
+    if(today < SUNDAY || today > SATURDAY) {
         printf("Invalid input\n");
-    } else {
-        printf("%s\n", weekdays[n]);
+        return 1;
     }
-
+    else{
+    printf("Today is: %d\n", today);  
+    }
     return 0;
 }
+
