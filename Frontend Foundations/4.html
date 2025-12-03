@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Counter</h2>
+
+<h1 id="num"></h1>
+
+<button onclick="increase()"> + </button>
+<button onclick="decrease()"> - </button>
+
+<script>
+
+let value = localStorage.getItem("counter");
+if(!value){
+    value = 0;
+}
+document.getElementById("num").innerText = value;
+
+function increase(){
+    value++;
+    document.getElementById("num").innerText = value;
+    localStorage.setItem("counter", value);
+}
+
+function decrease(){
+    value--;
+    document.getElementById("num").innerText = value;
+    localStorage.setItem("counter", value);
+}
+</script>
+
+</body>
+</html>
